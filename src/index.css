@@ -1,13 +1,107 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.body {
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8vh;
+  margin-top: 20px;
+}
+
+.heading_text {
+  font-size: 45px;
+  font-weight: bold;
+  color: #3c4446;
+}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  margin-bottom: 10px;
+}
+
+.news {
+  display: grid;
+  justify-content: center;
+  margin: auto;
+  width: 60%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 8px;
+}
+
+.news_card {
+  padding: 10px 6px;
+}
+
+.card_text {
+  display: flex;
+  gap: 8px;
+}
+
+.card_text_p {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.card_hashtags {
+  margin-top: -12px;
+}
+
+.hashtags {
+  font-weight: 500;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.footer {
+  margin-top: 30px;
+  padding: 10px 0px;
+  background-color: black;
+  color: white;
+  height: 8vh;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .heading {
+    display: flex;
+    text-align: center;
+    height: 8vh;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  .news {
+    grid-template-columns: 1fr;
+  }
 }
