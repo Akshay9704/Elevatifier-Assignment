@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Elevatifier-Assignment/static/css/main.87ae770a.css",
+    "main.js": "/Elevatifier-Assignment/static/js/main.8846fd0c.js",
+    "index.html": "/Elevatifier-Assignment/index.html",
+    "main.87ae770a.css.map": "/Elevatifier-Assignment/static/css/main.87ae770a.css.map",
+    "main.8846fd0c.js.map": "/Elevatifier-Assignment/static/js/main.8846fd0c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.87ae770a.css",
+    "static/js/main.8846fd0c.js"
+  ]
+}
