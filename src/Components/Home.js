@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -10,6 +10,9 @@ const Home = () => {
     const [articles, setArticles] = useState([]); // Add articles state
     const [selectedCategory, setSelectedCategory] = useState("All"); // Add selectedCategory state
     const [isLoading, setIsLoading] = useState(true); // Add isLoading state
+    const [searched, setSearched] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const inputEl = useRef();
 
     async function getArticles() {
         try {
@@ -35,6 +38,25 @@ const Home = () => {
         }
     }
 
+    const searchHandler = (searched) => {
+        setSearched(searched);
+        if (searched !== "") {
+            const newFilteredList = articles.filter((article) => {
+                return Object.values(article.attributes)
+                    .join(" ")
+                    .toLowerCase()
+                    .includes(searched.toLowerCase());
+            });
+            setSearchResults(newFilteredList);
+        } else {
+            setSearchResults([]); // Clear the search results when the search input is empty
+        }
+    };
+
+    const getSearch = () => {
+        searchHandler(inputEl.current.value);
+    };
+
     // Get all the categories from the articles state
     const categories = Array.from(new Set(articles.map(article => article.attributes.category)));
     // Create a dynamic heading based on the selected category
@@ -44,7 +66,20 @@ const Home = () => {
         <div>
             <div className='heading'>
                 <h1 className='heading_text'>News App - {headingText}</h1>
-                {/* Render the headingText variable in the h1 tag */}
+            </div>
+            <div className="searchbar">
+                <h2 id="search">Search News</h2>
+                <form action="#" onSubmit={(e) => e.preventDefault()}>
+                    <div className="search-input">
+                        <input
+                            ref={inputEl}
+                            type="text"
+                            placeholder="Search Here"
+                            value={searched}
+                            onChange={getSearch}
+                        />
+                    </div>
+                </form>
             </div>
             <div className='categories'>
                 <Nav>
@@ -64,8 +99,8 @@ const Home = () => {
                 </div>
             ) : (
                 <div className='news'>
-                    {/* Map through the articles array and render a Card for each article */}
-                    {filterArticles(selectedCategory).map((article) => (
+                    {/* Map through the articles or searchResults array and render a Card for each article */}
+                    {(searched ? searchResults : filterArticles(selectedCategory)).map((article) => (
                         <Card className='news_card' style={{ width: '18rem' }}>
                             <Card.Img variant="top" src={article.attributes.newsIcon} />
                             <Card.Body>
@@ -91,4 +126,3 @@ const Home = () => {
 }
 
 export default Home;
-
